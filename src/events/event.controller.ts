@@ -53,7 +53,7 @@ export class EventsController {
   @Get(':id')
   @UseInterceptors(ClassSerializerInterceptor)
   async findOne(@Param('id', ParseIntPipe) id) {
-    const event = await this.eventsService.getEvent(id);
+    const event = await this.eventsService.getEventWithAttendeeCount(id);
     if (!event) {
       throw new NotFoundException();
     }
